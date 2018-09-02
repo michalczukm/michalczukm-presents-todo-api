@@ -4,7 +4,7 @@ FORMAT: 1A
 API for back-end part of presentation solution - simple TODO app.
 
 
-## Contact [/contact]
+## Contact `/api/contact` [/contact]
 Contact information to you.
 This is the place where you can leave your contact information for attenders.
 
@@ -21,7 +21,7 @@ Only `author` is required in return, rest fields are optional. Please check the 
             "twitterName": "michalczukm"
         }
 
-## Items [/items]
+## Items `/api/items` [/items]
 Item on the todo list.
 
 **Item attributes:**
@@ -51,6 +51,8 @@ Item on the todo list.
         ]
         
 ### Get a single item by id [GET /items/{id}]
+
++ Relation: self
 
 + Parameters
     + id (required, Number, `2`) ... identifier of the item
