@@ -1,0 +1,119 @@
+FORMAT: 1A
+
+# michalczukm-presents-api
+API for back-end part of presentation solution - simple TODO app.
+
+
+## Contact [/contact]
+Contact information to you.
+This is the place where you can leave your contact information for attenders.
+
+Only `author` is required in return, rest fields are optional. Please check the examples.
+
+### Get [GET]
+
++ Response 200 (application/json)
+
+        {
+            "author": "Michal Michalczuk"
+            "email": "michalczukm@gmail.com"
+            "webpage": "https://michalczukm.com"
+            "twitterName": "michalczukm"
+        }
+
+## Items [/items]
+Item on the todo list.
+
+**Item attributes:**
+
+- id `(Number)` : unique identifier. 
+- title `(String)` : title of the item.
+- content `(String)` : item content.
+- createdOn `(Date)` : item creation date
+
+### Get all items [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+              "id": 1,
+              "title": "First item",
+              "content": "First item sample content",
+              "createdOn": "2018-09-01T15:30:00.511Z"
+            },
+            {
+              "id": 2,
+              "title": "Second item",
+              "content": "Second item sample content",
+              "createdOn": "2018-09-02T16:32:14.511Z"
+            }
+        ]
+        
+### Get a single item by id [GET /items/{id}]
+
++ Parameters
+    + id (required, Number, `2`) ... identifier of the item
+    
++ Response 200 (application/json)
+    
+        {
+            "id": 2,
+            "title": "Second item",
+            "content": "Second item sample content",
+            "createdOn": "2018-09-02T16:32:14.511Z"
+        }
+
+### Create a New item [POST]
+
++ Request (application/json)
+
+        {
+            "title": "Buy some milk",
+            "content": "Remember to buy the 2.5% one!"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /items/3
+
+    + Body
+        
+            {
+                "id": 3,
+                "title": "Buy some milk",
+                "content": "Remember to buy the 2.5% one!",
+                "createdOn": "2018-09-4T18:30:00.511Z"
+            }
+        
+
+### Update the item [PUT /items/{id}]
+
++ Parameters
+
+    + id (required, Number, `2`) ... identifier of the item
+
++ Request (application/json)
+
+        {
+            "title": "Buy a lot of milk",
+            "content": "Remember to buy the 2.5% one!"
+        }
+
++ Response 200
+
++ Response 404
+
+        
+### Delete the item [DELETE /items/{id}]
+
++ Parameters
+
+    + id (required, Number, `2`) ... identifier of the item
+
+
++ Response 200
+
++ Response 404
